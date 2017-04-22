@@ -27,7 +27,11 @@ def init_dates(dates):
         date = start_date + deltadays
         dates[date]=0
 
-# :TODO def clock_in():
+def clock_in():
+    # get check_box
+    if check_box == 1:
+        today = datetime.date.today()
+        dates[today] = 1
 
 # :TODO set_dates(dates):
     
