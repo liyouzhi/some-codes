@@ -27,13 +27,28 @@ def init_dates(dates):
         date = start_date + deltadays
         dates[date]=0
 
+def get_weekday(date): #0-6
+    return date.weekday()    
+
+def get_order(date):
+    yday = date.timetuple().tm_yday
+    num = yday // 7
+    return num
+
 def clock_in():
     # get check_box
     if check_box == 1:
         today = datetime.date.today()
         dates[today] = 1
+    # TODO return
 
-# :TODO set_dates(dates):
+def get_position(date):
+    y = get_weekday(date) * 12
+    x = get_order(date) * 12
+    return (x,y)
+
+# TODO def draw():
+
     
 setup_logging()
 app = Bottle()
