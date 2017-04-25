@@ -5,6 +5,7 @@ import datetime
 
 from bottle import run, route, Bottle
 
+from PIL import Image, ImageDraw, ImageFont
 
 def setup_logging():
     FORMAT = "%(asctime)s %(levelname)s %(process)d %(message)s"
@@ -22,7 +23,7 @@ dates = {}
 
 def init_dates(dates):
     start_date = datetime.date(2017,1,1)
-    for i in range(365):
+    for i in range(364):
         deltadays = datetime.timedelta(days=i+1)
         date = start_date + deltadays
         dates[date]=0
@@ -32,7 +33,7 @@ def get_weekday(date): #0-6
 
 def get_order(date):
     yday = date.timetuple().tm_yday
-    num = yday // 7
+    num = (yday+5) // 7
     return num
 
 def clock_in():
@@ -45,11 +46,23 @@ def clock_in():
 def get_position(date):
     y = get_weekday(date) * 12
     x = get_order(date) * 12
-    return (x,y)
+    return (x,y,x+10,y+10)
 
-# TODO def draw():
+def draw_calendar_graph(dates):
+    color_default = (235,237,240,100)
+    color_draw = (248,195,205,100) 
+    graph_size = (53*12, 7*12)
+    graph = Image.new('RGBA',graph_size,(255,255,255,100))
+    draw = ImageDraw.Draw(graph)
+    for date in dates:
+        position = get_position(date)
+        if dates.get(date) == 1:
+            color = color_draw
+        else: color = color_default
+        draw.rectangle(position,fill=color)
+        # print(position)
+    graph.save('calendar_graph.jpg', 'jpeg')
 
-    
 setup_logging()
 app = Bottle()
 
