@@ -46,7 +46,7 @@ def clock_in():
 def get_position(date):
     y = get_weekday(date) * 12
     x = get_order(date) * 12
-    return (x,y,x+10,y+10)
+    return (x,y,x+9,y+9)
 
 def draw_calendar_graph(dates):
     color_default = (235,237,240,100)
