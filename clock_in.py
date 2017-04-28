@@ -3,7 +3,7 @@ import logging
 import sys
 import datetime
 
-from bottle import run, route, Bottle
+from bottle import run, route, Bottle, HTTPResponse
 
 from PIL import Image, ImageDraw, ImageFont
 
@@ -65,6 +65,20 @@ def draw_calendar_graph(dates):
 
 setup_logging()
 app = Bottle()
+
+@app.route('/graph', method='GET')
+def show_graph():
+    with open('./calendar_graph.jpg', 'rb') as f:
+        data = f.read()
+    mtype = 'image/jpeg'
+    res = HTTPResponse(body=data)
+    res.set_header('Content-Type', mtype)
+    return res
+
+
+
+
+
 
 if __name__ == '__main__':
     app.run(host='localhost', port=8000, reloader=True)
