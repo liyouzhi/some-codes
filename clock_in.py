@@ -44,14 +44,14 @@ def clock_in():
     # TODO return
 
 def get_position(date):
-    y = get_weekday(date) * 12
-    x = get_order(date) * 12
+    y = get_weekday(date) * 12 + 2
+    x = get_order(date) * 12 + 2
     return (x,y,x+9,y+9)
 
 def draw_calendar_graph(dates):
     color_default = (235,237,240,100)
     color_draw = (248,195,205,100) 
-    graph_size = (53*12, 7*12)
+    graph_size = (53*12+2, 7*12+2)
     graph = Image.new('RGBA',graph_size,(255,255,255,100))
     draw = ImageDraw.Draw(graph)
     for date in dates:
