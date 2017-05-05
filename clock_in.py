@@ -3,7 +3,7 @@ import logging
 import sys
 import datetime
 
-from bottle import run, route, Bottle, HTTPResponse
+from bottle import run, route, Bottle, HTTPResponse, template
 
 from PIL import Image, ImageDraw, ImageFont
 
@@ -75,7 +75,9 @@ def show_graph():
     res.set_header('Content-Type', mtype)
     return res
 
-
+@app.route('/', method='GET')
+def home():
+    return template('home.html')
 
 
 
