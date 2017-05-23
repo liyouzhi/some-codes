@@ -3,7 +3,7 @@ import logging
 import sys
 import datetime
 
-from bottle import run, route, Bottle, HTTPResponse, template
+from bottle import run, route, Bottle, HTTPResponse, template, static_file
 
 from PIL import Image, ImageDraw, ImageFont
 
@@ -79,7 +79,9 @@ def show_graph():
 def home():
     return template('home.html')
 
-
+@app.route('/static/<filename>')
+def server_static(filename):
+    return static_file(filename, root = './static')
 
 
 if __name__ == '__main__':

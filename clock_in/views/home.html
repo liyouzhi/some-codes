@@ -1,21 +1,27 @@
 <html>
 	<head>
 
-		<script type="text/javascript" src="static/cal-heatmap-master/cal-heatmap.min.js"></script>
-		<link rel="stylesheet" href="static/cal-heatmap-master/cal-heatmap.css" />
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
-
+		<link rel="stylesheet" href="/static/cal-heatmap.css" />
+		<script type="text/javascript" src="/static/cal-heatmap.min.js"></script>
 
 	</head>
 	<body>
 		<title>Clock-in</title>
 		<div id="cal-heatmap"></div>
 		<script type="text/javascript">
-			val cal = new CalHeatMap();
+			var cal = new CalHeatMap();
 			cal.init({
 				domain: "year",
 				subDomain: "day",
+				range: 1,
+				cellRadius: 3,
+				start: new Date(2017, 0),
+				// subDomainTextFormat: "%d",
+				domainGutter: 0,
+				displayLegend: false,
+				tooltip : true
 			});
-		</script>>
+		</script>
 	</body>
 </html>
