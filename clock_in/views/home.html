@@ -1,27 +1,45 @@
 <html>
 	<head>
 
+		<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
-		<link rel="stylesheet" href="/static/cal-heatmap.css" />
+		<link rel="stylesheet" href="/static/uikit.min.css" />
+		<script src="/static/uikit.min.js"></script>
 		<script type="text/javascript" src="/static/cal-heatmap.min.js"></script>
+		<link rel="stylesheet" href="/static/cal-heatmap.css" />
 
 	</head>
 	<body>
 		<title>Clock-in</title>
-		<div id="cal-heatmap"></div>
+		<div id="zhanwei" class="uk-h4">打卡</div>
+		<hr>
+		<div id="cal-heatmap" class="uk-width-1-1 uk-panel"></div>
 		<script type="text/javascript">
 			var cal = new CalHeatMap();
 			cal.init({
 				domain: "year",
 				subDomain: "day",
 				range: 1,
-				cellRadius: 3,
+				cellRadius: 1,
 				start: new Date(2017, 0),
 				// subDomainTextFormat: "%d",
 				domainGutter: 0,
 				displayLegend: false,
-				tooltip : true
+				tooltip : true,
+				legendColors: {
+					min: "#DC9FB4",
+					max: "#DC9FB4"
+				},
+				data: "/data/cal_data.json",
+				highlight: "now",
+				domainLabelFormat: ""
 			});
+			$('rect.highlight-now').css('stroke','#DB4D6D');
+			$('.highlight').css('stroke','#DB4D6D');
+			// $('#cal-heatmap .graph-label').css('font-size','12px');
+			// $('#cal-heatmap .ch-tooltip').css('position','relative');
+			// $('#cal-heatmap .ch-tooltip::after').css('position','relative');
+			// $('text .graph-label').text('clock-in');
 		</script>
 	</body>
 </html>

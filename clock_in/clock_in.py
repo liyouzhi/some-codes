@@ -83,6 +83,9 @@ def home():
 def server_static(filename):
     return static_file(filename, root = './static')
 
+@app.route('/data/<filename>')
+def server_data(filename):
+    return static_file(filename, root = './data')
 
 if __name__ == '__main__':
     app.run(host='localhost', port=8000, reloader=True)
